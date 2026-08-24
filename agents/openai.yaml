@@ -1,4 +1,4 @@
 interface:
   display_name: "Krea 2 写实扩写器"
-  short_description: "将简短想法扩写为追求照片级真实感的 Krea 2 提示词"
-  default_prompt: "Use $krea2-photoreal-prompt-expander to expand this idea into a physically believable Krea 2 photo prompt."
+  short_description: "为开源 Krea 2 RAW/Turbo 扩写物理可信的写实摄影提示词"
+  default_prompt: "Use $krea2-photoreal-prompt-expander to turn this idea into one faithful, physically believable Krea 2 RAW/Turbo photo prompt."

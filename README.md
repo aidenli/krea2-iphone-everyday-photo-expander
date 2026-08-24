@@ -1,20 +1,20 @@
 # Krea 2 Photoreal Prompt Expander
 
-A Codex Skill that turns a short idea into a natural-language prompt for Krea 2 RAW or Turbo, with one hard goal: generate images that read as real photographs rather than polished AI renders.
+A Codex Skill that converts short or uneven ideas into faithful, physically coherent photography prompts for the open Krea 2 RAW and Turbo checkpoints.
 
-It targets people, smartphone snapshots, documentary scenes, environmental portraits, product photography, interiors, low-light images, and practical-fantasy photography. It does not generate images itself.
+It targets people, smartphone snapshots, documentary scenes, products, interiors, architecture, food, low-light scenes, action, and practical-effects fantasy. It does not generate images and does not cover hosted Krea 2 product controls.
 
-## What It Enforces
+## Core Behavior
 
-- One plausible capture mode per image rather than mixed camera jargon.
-- Physically consistent lighting, depth of field, materials, movement, and contact shadows.
-- Concrete foreground, midground, and background evidence instead of empty bokeh.
-- Natural human texture and ordinary behavior without default beauty retouching.
-- Rejection of cargo-cult terms such as `masterpiece`, `16K`, `perfect skin`, and `Unreal Engine`.
+- Preserves explicit subjects, counts, identities, actions, colors, spatial relationships, text, and exclusions.
+- Uses one plausible capture mode and one causally coherent lighting setup.
+- Adds only a few scale-appropriate material or human details.
+- Rejects mixed camera media, contradictory optics, cargo-cult quality words, and default beauty retouching.
+- Returns one paste-ready English prompt in a `text` code block by default.
 
 ## Install
 
-Copy this directory to your Codex skills folder, then run the first-run check:
+Copy this directory to your Codex skills folder, then run:
 
 ```powershell
 node scripts/self-check.mjs
@@ -23,16 +23,16 @@ node scripts/self-check.mjs
 ## Use
 
 ```text
-$krea2-photoreal-prompt-expander A delivery rider eating instant noodles outside a convenience store after a night shift, as if a passerby caught the moment on a phone.
+$krea2-photoreal-prompt-expander A delivery rider eating instant noodles outside a convenience store after a night shift, caught casually by a passerby on a phone.
 ```
 
-The Skill returns one paste-ready English prompt by default. Its detailed operating rules are in [SKILL.md](SKILL.md); evidence curation and source decisions are documented in [references/research-notes.md](references/research-notes.md).
+The operating contract is in [SKILL.md](SKILL.md). Detailed scene guidance is loaded selectively from [references/realism-playbook.md](references/realism-playbook.md), while verified RAW/Turbo settings live in [references/model-settings.md](references/model-settings.md).
 
-## Validation
+## Validate a Prompt
 
 ```powershell
-node scripts/self-check.mjs
+node scripts/self-check.mjs --file prompt.txt
 ```
 
-The check verifies the package layout and confirms that a causally grounded photography prompt passes while a contradictory quality-word stack fails.
+The linter catches structural contradictions and known cargo-cult patterns. It does not replace semantic review.
 

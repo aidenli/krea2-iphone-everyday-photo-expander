@@ -1,183 +1,134 @@
 # Krea 2 Realism Playbook
 
-本参考页用于把“真实”拆成可执行的摄影因果。选择与当前场景最接近的一节；不要把所有词汇装进同一条提示词。
+只在复杂场景或提示词诊断时读取。本参考把“真实”拆成可观察、可推导的摄影事实，不提供固定词库。
 
 ## Governing Principle
 
-提示词必须描述**一次现实拍摄事件**，而不是评价一张图有多好。真实感来自相互支持的证据：环境解释光线，光线解释材质，镜头解释构图和景深，动作解释姿势与接触。
+提示词必须描述一次现实中可以发生的拍摄事件，而不是评价一张图有多好。真实感来自互相支持的证据：环境解释光源，光源解释阴影和反射，构图解释景深，动作解释受力和运动表现，物品状态解释材质与磨损。
 
-推荐的开头句式：
+推荐用准确媒介开头，例如：
 
 ```text
-The entire scene is captured as a real [capture type] photograph, not an illustration or rendering.
+The scene is captured as a candid smartphone photograph.
 ```
 
-这句话适合 Krea 2 容易风格漂移的题材，尤其是未来城市、奇幻人物、戏服、特殊生物和复杂产品。普通照片不必机械重复 `not an illustration`。
+或：
 
-## Mode Recipes
+```text
+A documentary photograph of...
+```
+
+准确媒介名称已经承担“照片感”，不需要再叠加 `photorealistic`、`lifelike` 或 `real photo`。
+
+## Capture Logic
 
 ### Smartphone Snapshot
 
-适用：家庭、朋友、街头偶遇、社交媒体、突发事件、普通消费者视角。
-
-优先描述：
-
-- 24-28mm equivalent wide view 或不写焦段；手机离主体的实际距离。
-- deep or moderate focus，前后景都有信息；不要默认奶油虚化。
-- 手持造成的轻微倾斜、边缘裁切、局部运动模糊或不完美时机。
-- 自动曝光的真实代价：亮部轻微溢出、暗部噪点、夜景降噪、边缘锐化或压缩痕迹。
-- 环境中的普通杂物、路人、标识、桌面使用痕迹，但只加与场景逻辑相符的内容。
-
-避免：把手机照片同时写成 DSLR、胶片、85mm 人像、专业影棚或极浅景深。不要把 HDR、高饱和、ultrasharp 当成默认真实感；这些只适合明确的现代手机计算摄影外观。
+- 使用随手取景、较深景深、有限动态范围和符合情境的轻微曝光妥协。
+- 背景保留可识别地点；轻微倾斜、边缘裁切、局部运动模糊、自动闪光或传感器噪点只能按场景选少量使用。
+- 不要同时加入 DSLR、35mm film、影棚人像和巨大的光学散景。
 
 ### Documentary Digital
 
-适用：劳动、公共生活、旅行、新闻式场景、真实环境人物。
-
-优先描述：
-
-- candid documentary photograph、available light、eye-level 或现场合理机位。
-- 35mm 或 50mm 只作为高层构图线索，不堆机身型号和完整 EXIF。
-- 人物处于动作中，视线落在任务或他人身上，不默认看镜头。
-- 中等景深，背景足以确认地点；轻微运动、衣物受力和接触阴影。
-- 自然白平衡、克制对比度、没有商业磨皮。
-
-避免：所有人物像时装模特一样站定、完美布光、每个表面都闪亮、全画面橙青调色。
-
-### Environmental Portrait
-
-适用：人物肖像，但环境必须解释其身份、职业或当下状态。
-
-优先描述：
-
-- medium close-up 或 waist-up；说明人物与桌面、门窗、工具或街道的距离关系。
-- 一个可定位的光源，例如左侧窗光、头顶荧光灯或门外阴天散射光。
-- 细微皮肤纹理、发丝、衣物褶皱、真实表情和不对称性。
-- 背景保留辨识度；浅景深只能轻度使用，不能把环境融成无意义色块。
-
-皮肤安全写法：
-
-```text
-natural skin texture with subtle pores, fine vellus hair and slight tonal variation, never waxy or over-retouched
-```
-
-只在脸占画面较大时使用。远景人物无需强求毛孔。
+- 人物处于任务或事件中，视线通常落在动作、工具或他人身上。
+- 现场光、适度处理、中等景深和背景地点证据优先于漂亮布光。
+- 允许衣物受力、轻微运动和接触阴影，不要让所有人物按相同姿势看镜头。
 
 ### Analog Film
 
-适用：用户明确要求胶片、年代记录、一次性相机或化学成像。
-
-优先描述：
-
-- 一种胶片语义即可：35mm consumer film、disposable-camera flash、muted documentary film。
-- 细颗粒或粗颗粒、有限动态范围、轻微欠曝、柔和高光晕染、颜色偏移。
-- 让缺陷来自光线和冲印条件，而不是堆“vintage aesthetic”。
-
-避免：同时写数字 HDR、无噪点超清晰、手机计算摄影和多种胶片品牌。
+- 只在用户明确要求胶片、年代感或化学成像时使用。
+- 选择一种胶片语义即可，如 consumer 35mm film 或 disposable-camera flash。
+- 颗粒、色偏、有限动态范围和轻微软化应来自成像条件，不要堆成复古滤镜清单。
 
 ### Product and Still Life
 
-适用：商品、食品、工具、器物、包装。
-
-真实锚点：
-
-- 物体重量通过台面形变、稳定摆放和接触阴影体现。
-- 金属、玻璃、塑料、陶瓷和织物拥有不同的高光宽度、粗糙度和反射。
-- 透明物体必须折射和透出背景；液体遵循重力与容器边界。
-- 商品不是悬浮的，除非用户明确要求悬浮装置。
-- 商业摄影可以干净，但仍保留接触阴影、边缘微尘、指纹或包装细微折痕中的少量一项。
-
-避免：不可能的多方向高光、没有环境来源的反射、标签随曲面错误变形、所有边缘发光。
+- 先保证几何、尺度、底部接触、标签方向和线缆重力，再描述表面。
+- 金属、玻璃、塑料、陶瓷、织物和木材必须具有不同的高光宽度、粗糙度与反射行为。
+- 新品保持干净；旧物或用户明确要求使用痕迹时，才加入与状态相符的磨损。
+- 受控商业摄影可以精致，但不能出现悬浮、无来源边缘光、镜像错误或 CGI 完美表面。
 
 ### Interior and Architecture
 
-适用：住宅、商店、办公室、建筑记录。
-
-真实锚点：
-
-- 说明视点高度、广角程度和主要消失线；建筑垂直线保持合理。
-- 窗外亮度通常高于室内；混合光源应有轻微色温差。
-- 家具落地并产生一致接触阴影；织物、木材和墙面不共享同一塑料质感。
-- 加入少量使用痕迹：椅子轻微错位、地板磨痕、桌面线缆、窗帘自然褶皱。
-
-避免：所有表面像 3D 样板房一样零瑕疵、室内外同时完美曝光、宽角但没有透视变化。
+- 说明相机高度、视角范围、主要消失线和窗户方向；垂直线保持连贯。
+- 窗外通常比室内亮，混合光源应有可见色温差。
+- 家具落地并产生接触阴影；木材、织物、玻璃和墙面不能共享同一塑料质感。
+- 使用痕迹只选少量，如地板磨痕、桌面细纹或窗帘自然褶皱。
 
 ### Night and Low Light
 
-适用：夜街、酒吧、演出、车内、室内弱光。
-
-真实锚点：
-
-- 只选可见的 practical lights：路灯、招牌、手机屏幕、车灯、吊灯或闪光灯。
-- 接受有限动态范围：灯牌局部过曝、阴影噪点、黑位压缩、颜色污染和移动物体轻微拖影。
-- 光只能照亮它实际够得到的区域，远处不能无故清晰明亮。
-
-避免：夜晚同时拥有金色日光、无来源轮廓光、所有暗部完全干净、所有霓虹都照亮人物正脸。
+- 只使用现场可见光源：街灯、招牌、车灯、手机屏幕、舞台灯或室内灯具。
+- 接受过曝实用光源、深阴影、混合白平衡、噪点、慢快门运动和有限对焦。
+- 远处不能无故清晰明亮；不要用无来源补光照亮每个表面或人物正脸。
 
 ### Practical Fantasy
 
-适用：精灵、怪物、科幻服装、未来城市等容易滑向概念图或 CGI 的内容。
+- 把不现实主体解释为实体服装、假体、模型、道具、机械装置或现场特效被相机拍到。
+- 保留重量、接缝、固定结构、演员受力、环境接触和真实灯光限制。
+- 若用户明确要求幻想生物在世界中真实存在，则直接描述自然纪录或现场摄影，不擅自降级为 cosplay。
 
-把幻想对象改写成现实制作与拍摄证据：
+## Subject-Specific Checks
 
-- prosthetic makeup、silicone appliance、hand-painted costume、machined prop、practical creature suit。
-- real location、on-set production still、documentary photograph of a practical-effects shoot。
-- 道具重量、接缝、磨损、固定结构、演员受力和与环境接触。
-- 真实相机的曝光、焦点和运动限制仍然存在。
+### Portrait
 
-不要擅自把用户要的真实生物降级成“演员穿戏服”。如果用户要求世界内真实存在的幻想生物，写成现场自然摄影，但仍用皮肤、毛发、重量、呼吸、足迹和环境交互建立可信度。
+- 近景才可描述细小汗毛、局部毛孔、唇部纹理或眼下细节；中远景转而关注轮廓、衣物、姿势和环境。
+- 眼神光必须来自已说明的光源；脸部不自动对称、提亮或磨皮。
+- `ordinary`、`unposed`、`mid-action` 比 `beautiful`、`perfect`、`glamorous` 更适合普通人物。
 
-## Background Is Evidence
+### Full Body and Groups
 
-Krea 2 社区测试反复显示，明确描述中景与远景，比单独写 `sharp background` 更能减少默认背景虚化。选择 1-3 个能证明地点的背景元素，说明它们的位置和可见状态。
+- 明确人数、前后或左右关系、每只手属于谁、接触对象、遮挡顺序和承重脚。
+- 脚与地面需要接触，坐姿要有座面压力，抓握要符合物体重量。
+- 不通过罗列“正确手指、正确腿”保证解剖；用可读动作和空间关系降低歧义。
 
-有效：
+### Food, Plants, and Animals
 
-```text
-Across the road, a small grocery storefront, two parked bicycles and the wet bus shelter remain recognizable in the midground.
-```
+- 食物关注份量几何、温度与水分线索、切面、碎屑和餐具接触，避免塑料高光。
+- 植物关注叶片朝向、半透明边缘、风或重力；动物关注毛发方向、胡须、关节受力和环境接触。
+- 不要把人物皮肤词套到食物、动物或产品上。
 
-无效：
+### Action
 
-```text
-extremely detailed background, everything perfect, 8K
-```
+- 说明决定性瞬间、身体力学、运动方向、保持清晰的平面和产生模糊的运动元素。
+- 快门冻结动作时需要足够光线；弱光动作更可能出现局部运动模糊或噪点。
+- 运动模糊属于运动部分，不是覆盖全画面的涂抹效果。
 
-若用户明确要求浅景深，仍需让背景保持空间和光线逻辑，只是降低细节，而不是变成均匀奶油色。
+## Finite Realism Budget
 
-## Optical Consistency
+每张图只选三至五项最有解释力的细节：
 
-- `deep focus / everything sharp` 对应较小光圈、较宽视角、较亮环境或计算摄影，不应再写 `f/1.2` 和强 bokeh。
-- `shallow depth of field` 需要近距离主体、较长焦段或较大光圈；背景必须沿深度逐渐失焦。
-- 快速动作若完全凝固，需要足够快快门和足够光线；弱光下更可能出现噪点或运动模糊。
-- 强烈逆光会压暗正面或需要可解释的补光；不要让逆光人物面部自动完美曝光。
-- 微距景深天然很浅，不能同时要求从镜头前到无限远全部清晰。
+- 人物：局部肤色变化、少量汗毛、散发、衣物压力、自然不对称；
+- 面料：关节褶皱、接缝拉力、自然垂坠、压缩折痕；
+- 硬质表面：符合状态的指纹、边缘磨损、水渍、细小划痕或灰尘；
+- 环境：使用痕迹、风化、轻微错位、可信反射；
+- 拍摄：颗粒、噪点、压缩、局部模糊、曝光妥协。
 
-相机型号不是真实性证明。只在型号会改变可见成像行为时使用；否则描述 `older smartphone snapshot`、`modern consumer phone photo` 或 `documentary digital photograph` 更稳。
+细节必须符合距离和状态。远景没有可辨毛孔，全新奢侈品没有默认污垢，静止影棚产品没有无缘由运动模糊。
 
-## Anti-Synthetic Ending
+## Corrected Examples
 
-最后一句只排除最可能发生的漂移，不要列二十项负面词。例如：
+### Candid Documentary Portrait
 
-```text
-It should feel ordinary and observed rather than staged, with no beauty retouching, plastic skin, CGI surfaces or dramatic commercial color grading.
-```
-
-产品图可以排除浮空和 CGI；室内图可以排除样板房渲染感；手机图可以排除专业影棚、奶油虚化和胶片颗粒。排除项必须服务于所选捕获模式。
-
-## Negative Conditioning
-
-官方 Krea 2 Turbo 推荐 CFG 为 `0.0`，因此默认工作流不要输出独立 negative prompt。部分社区工作流在 CFG 约 `1.2` 时报告负向条件开始产生影响，但同时可能增加饱和、重复和伪影；这是实验性配置，不是本 Skill 的默认假设。
-
-当用户明确启用 negative conditioning 时，负面提示词应短且针对本次漂移，例如手机随拍可使用：
+输入：一个成年女性独自在雨后的社区公交站等车，穿夹克，站在站棚下看向道路，眼平中等全身构图，自然 50mm 透视，阴天自然光。
 
 ```text
-illustration, CGI render, studio portrait, artificial bokeh, plastic skin, beauty retouching
+A candid documentary photograph of an adult woman waiting alone at a neighborhood bus stop just after rain, standing beneath the shelter and looking down the road rather than at the camera. Medium full-body framing at eye level with a natural 50mm perspective; wet pavement, shelter glass and a muted storefront across the road keep the location recognizable. Soft overcast daylight enters from the open street side while the shelter roof leaves a gentle shadow beneath her chin. Damp flyaway hairs cling near her temple, her jacket folds where one arm bends, her weight rests naturally on one leg, and irregular puddles carry restrained street reflections. Neutral-cool white balance, moderate depth of field and soft highlight roll-off. The moment feels ordinarily observed, with no beauty retouching, artificial rim light, HDR gloss or exaggerated bokeh.
 ```
 
-不要把正向提示词中的核心摄影媒介也放进负面提示词。
+### Clean Commercial Product
 
-## Final Compression
+输入：全新的黑色机械键盘平放在有使用痕迹的胡桃木桌上，编织线缆可见，左上方大型柔光窗照明，略微俯拍的三分之四电商构图。
 
-删除不承担以下任一职责的词句：主体事实、空间关系、拍摄行为、光照因果、材质证据、动作可信度或漂移控制。真实感来自信息互锁，不来自字数。
+```text
+A commercial product photograph of a new black mechanical keyboard resting flat on a used walnut desk, shown in a clean three-quarter view from slightly above with the key layout and braided cable connection clearly readable. A large diffused window at the upper left is the dominant source, producing broad restrained highlights on the frame, soft keycap shadows and a clear contact shadow beneath the keyboard; ambient light reflected by the room keeps shadow detail visible without acting as a second light source. The new matte keycaps remain clean with subtle manufacturing variation in sheen, the cable bends under its own weight, and only the walnut surface carries fine use marks along its grain. Neutral white balance, accurate blacks, controlled reflections, realistic dynamic range and sharp product focus with gentle distance falloff. No floating geometry, CGI-perfect surfaces, glowing edges or excessive HDR polish.
+```
+
+## Failure Patterns
+
+- 空洞质量词：`masterpiece, best quality, 16K, insanely detailed`。
+- 媒介冲突：`smartphone + DSLR + 35mm film + cinematic render`。
+- 目标冲突：`perfect skin + visible pores + flawless face + gritty realism`。
+- 光线冲突：阴天软光却产生正午硬阴影，午夜场景却使用 golden-hour sunlight。
+- 光学冲突：同时要求巨大散景与从前景到远景全部锐利。
+- 无依据细节：新品默认灰尘划痕，普通房间凭空出现轮廓灯和烟雾。
+- 全局模板：每张图都加 cinematic、HDR、teal-orange、volumetric light、grain 和 shallow depth of field。
 
