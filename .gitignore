@@ -1,0 +1,22 @@
+# Local secrets and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+
+# Local dependencies and generated artifacts
+node_modules/
+coverage/
+dist/
+logs/
+outputs/
+*.log
+
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
