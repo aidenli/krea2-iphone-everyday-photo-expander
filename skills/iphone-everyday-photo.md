@@ -258,20 +258,6 @@ A handheld night photo taken on a recent iPhone using the rear 1x Main camera in
 8. 详细输入只轻度整理，不用默认值覆盖明确设备和构图；
 9. 商业 packshot、建筑摄影、胶片、视频、插画和 3D 返回索引重新路由。
 
-## Evidence Boundaries
-
-设备事实以 Apple 官方资料为准：
-
-- Camera modes and zoom: https://support.apple.com/guide/iphone/camera-basics-iph263472f78/26/ios/26
-- Main camera: https://support.apple.com/en-gb/guide/iphone/iph72395b28f/ios
-- Portrait: https://support.apple.com/en-mide/guide/iphone/iphd7d3a91a2/ios
-- Night mode: https://support.apple.com/guide/iphone/take-night-mode-photos-iph1a3c5b4c3/26/ios/26
-- Burst: https://support.apple.com/guide/iphone/take-burst-mode-shots-ipha42c55cd0/26/ios/26
-- Macro: https://support.apple.com/en-asia/guide/iphone/iphfaacf2eb0/ios
-- Selfie: https://support.apple.com/en-gb/guide/iphone/iph1b88429a6/26/ios/26
-
-新增 iPhone 能力必须能由 Apple 官方资料确认。社区单图、旧手机滤镜和第三方 LoRA 只能作为实验线索，不能升级为默认规则。
-
 ## Hard Boundary
 
 ### Always
