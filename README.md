@@ -6,7 +6,7 @@ A multi-skill repository for Krea 2 photography prompt writing. The root [SKILL.
 
 | Skill | Purpose | Document |
 |---|---|---|
-| `iphone-everyday-photo` | Static everyday candids, street observation, friend-shot photos, selfies, mirror photos, and photo-based UGC captured on a recent iPhone | [skills/iphone-everyday-photo.md](skills/iphone-everyday-photo.md) |
+| `iphone-everyday-photo` | Static everyday candids, street observation, selfies, mirror photos, and photo-based UGC constrained by recent iPhone capture behavior; device labels are omitted by default | [skills/iphone-everyday-photo.md](skills/iphone-everyday-photo.md) |
 
 ## Structure
 
@@ -25,7 +25,7 @@ Copy this repository to the Codex skills folder as `krea2-photography-prompt-ski
 ## Use
 
 ```text
-$krea2-photography-prompt-skills A well-dressed young Korean office worker pushes open a cafe door and steps onto the sidewalk, photographed like an ordinary iPhone moment.
+$krea2-photography-prompt-skills A well-dressed young Korean office worker pushes open a cafe door and steps onto the sidewalk in an everyday candid.
 ```
 
 When another capture type is added, create another self-contained Markdown document under `skills/` and add one routing row to the root index.

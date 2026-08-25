@@ -1,4 +1,4 @@
 interface:
   display_name: "Krea 2 摄影提示词 Skills"
-  short_description: "从独立拍摄类型文档中选择一个，为 Krea 2 扩写摄影提示词"
-  default_prompt: "Use $krea2-photography-prompt-skills to select exactly one matching photography skill document, read it completely, and turn this request into the required Krea 2 prompt."
+  short_description: "用可见成像条件扩写 Krea 2 日常摄影提示词"
+  default_prompt: "Use $krea2-photography-prompt-skills to select one matching photography skill and expand this request through visible capture conditions."

@@ -19,7 +19,7 @@ description: Krea 2 摄影提示词项目的索引与路由入口。根据用户
 
 | Skill | Use when | Do not use when | Document |
 |---|---|---|---|
-| `iphone-everyday-photo` | 近期 iPhone 静态生活抓拍、街头观察、朋友代拍、自拍、镜面照和照片型 UGC | 专业相机、商业广告、商品棚拍、建筑摄影、胶片、视频帧、插画或 3D | [skills/iphone-everyday-photo.md](skills/iphone-everyday-photo.md) |
+| `iphone-everyday-photo` | 以近期 iPhone 能力为内部边界的静态生活抓拍、街头观察、自拍、镜面照和照片型 UGC | 专业相机、商业广告、商品棚拍、建筑摄影、胶片、视频帧、插画或 3D | [skills/iphone-everyday-photo.md](skills/iphone-everyday-photo.md) |
 
 ## Shared Reference
 
