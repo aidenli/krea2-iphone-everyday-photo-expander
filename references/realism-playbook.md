@@ -72,7 +72,21 @@ A documentary photograph of...
 
 - 近景才可描述细小汗毛、局部毛孔、唇部纹理或眼下细节；中远景转而关注轮廓、衣物、姿势和环境。
 - 眼神光必须来自已说明的光源；脸部不自动对称、提亮或磨皮。
-- `ordinary`、`unposed`、`mid-action` 比 `beautiful`、`perfect`、`glamorous` 更适合普通人物。
+- `ordinary`、`unposed`、`mid-action` 用来约束行为与拍摄状态，不用于覆盖用户指定或主规则默认的 `beautiful` casting；避免 `perfect`、`glamorous` 等商业修图倾向。
+
+### Young Attractive Woman without Beauty-Filter Drift
+
+- 单一女性主体未指定年龄和外貌时，按主规则使用 20 岁、年轻、漂亮的成年女性；不要退化成只有 `adult woman` 的宽泛 casting。
+- 漂亮可以保留，但应落在个体化五官、自然年轻皮肤、轻微左右差异、真实面部起伏和克制的日常妆容上，而不是蜡质皮肤、网红模板脸、统一大眼小脸或全脸柔焦。
+- `时尚、精致` 首先描述搭配、剪裁、材质、发型和妆容。用户没有要求时，不要把媒介写成 fashion photograph、editorial campaign 或 beauty portrait。
+- 画面是全身或中远景时，不要用大量脸型和五官词抢占提示权重；把更多信息分配给动作、衣物受力、环境曝光和接触关系。
+
+### Doorway and Walking Transitions
+
+- 抓住动作尚未完成的一刻：门正在转动、一只脚跨过门槛、另一只脚仍在室内、躯干因推门而旋转、视线落在行进方向。
+- 相机位于动作路径的侧前方，不在人物正前方。门扇形成斜线并遮挡少量入口，画面保持偏轴和非对称。
+- 手指应被门把握持关系自然组织和部分遮挡；不要用 `distorted hands, extra limbs` 替代接触描述。
+- 室外曝光正常时，室内通常更暗且偏暖；玻璃应同时保留部分反射与室内信息，而不是变成纯净广告背景或奶油散景。
 
 ### Full Body and Groups
 
@@ -122,6 +136,14 @@ A candid documentary photograph of an adult woman waiting alone at a neighborhoo
 A commercial product photograph of a new black mechanical keyboard resting flat on a used walnut desk, shown in a clean three-quarter view from slightly above with the key layout and braided cable connection clearly readable. A large diffused window at the upper left is the dominant source, producing broad restrained highlights on the frame, soft keycap shadows and a clear contact shadow beneath the keyboard; ambient light reflected by the room keeps shadow detail visible without acting as a second light source. The new matte keycaps remain clean with subtle manufacturing variation in sheen, the cable bends under its own weight, and only the walnut surface carries fine use marks along its grain. Neutral white balance, accurate blacks, controlled reflections, realistic dynamic range and sharp product focus with gentle distance falloff. No floating geometry, CGI-perfect surfaces, glowing edges or excessive HDR polish.
 ```
 
+### Well-Dressed Korean Office Worker Leaving a Cafe
+
+输入：时尚、打扮精致的韩国籍女白领，推门走出咖啡厅。
+
+```text
+An observational street photograph of one beautiful 20-year-old adult Korean office worker at the instant she pushes open a glass cafe door and crosses the threshold toward the sidewalk. She wears carefully coordinated contemporary officewear with precise tailoring, neat styled hair and refined everyday makeup; her youthful face remains individual and naturally textured rather than beauty-filtered. The camera is positioned several steps outside and slightly to one side, creating an off-center medium full-body frame instead of a frontal fashion pose. Her hand wraps around the vertical handle with the fingers partly hidden by the grip, the moving door cuts diagonally across the entrance, her torso turns with the push, and her weight transfers from the foot still inside to the foot landing outside while she looks toward her path. Street daylight is exposed normally, leaving the cafe interior visibly dimmer and warmer through partial reflections and faint handling marks on the glass; tables, a menu board and the sidewalk edge remain readable. Garment folds respond to the turn at her shoulder, waist and hip, with slight motion softness limited to the landing foot and door edge. The moment feels incidental and unperformed, with restrained color, no centered model pose, glossy beauty-campaign finish, waxy skin, CGI surfaces or empty studio-like background.
+```
+
 ## Failure Patterns
 
 - 空洞质量词：`masterpiece, best quality, 16K, insanely detailed`。
@@ -131,4 +153,5 @@ A commercial product photograph of a new black mechanical keyboard resting flat 
 - 光学冲突：同时要求巨大散景与从前景到远景全部锐利。
 - 无依据细节：新品默认灰尘划痕，普通房间凭空出现轮廓灯和烟雾。
 - 全局模板：每张图都加 cinematic、HDR、teal-orange、volumetric light、grain 和 shallow depth of field。
-
+- Casting 与媒介混淆：人物“时尚精致”被扩写为 fashion photograph，导致正面居中、走秀姿势、商业美妆脸和背景虚化。
+- 伪动作：只写 `steps out` 或 `pushes the door`，却没有门扇位置、躯干旋转、承重转移、跨门槛状态和运动方向。

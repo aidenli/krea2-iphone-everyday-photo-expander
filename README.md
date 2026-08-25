@@ -7,6 +7,7 @@ It targets people, smartphone snapshots, documentary scenes, products, interiors
 ## Core Behavior
 
 - Preserves explicit subjects, counts, identities, actions, colors, spatial relationships, text, and exclusions.
+- Defaults a single unspecified female subject to a beautiful 20-year-old adult while keeping her features natural and individualized.
 - Uses one plausible capture mode and one causally coherent lighting setup.
 - Adds only a few scale-appropriate material or human details.
 - Rejects mixed camera media, contradictory optics, cargo-cult quality words, and default beauty retouching.
@@ -14,11 +15,7 @@ It targets people, smartphone snapshots, documentary scenes, products, interiors
 
 ## Install
 
-Copy this directory to your Codex skills folder, then run:
-
-```powershell
-node scripts/self-check.mjs
-```
+Copy this directory to your Codex skills folder.
 
 ## Use
 
@@ -27,12 +24,3 @@ $krea2-photoreal-prompt-expander A delivery rider eating instant noodles outside
 ```
 
 The operating contract is in [SKILL.md](SKILL.md). Detailed scene guidance is loaded selectively from [references/realism-playbook.md](references/realism-playbook.md), while verified RAW/Turbo settings live in [references/model-settings.md](references/model-settings.md).
-
-## Validate a Prompt
-
-```powershell
-node scripts/self-check.mjs --file prompt.txt
-```
-
-The linter catches structural contradictions and known cargo-cult patterns. It does not replace semantic review.
-

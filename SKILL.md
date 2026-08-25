@@ -17,16 +17,6 @@ description: 将简短或不均衡的想法扩写、改写、优化或诊断成�
 - 用户询问开源 RAW/Turbo 参数、分辨率、LoRA 或 negative conditioning 时，读取 [references/model-settings.md](references/model-settings.md)。
 - 只有在解释依据、审查规则或更新 Skill 时，读取 [references/research-notes.md](references/research-notes.md)。
 
-## First Run
-
-安装后首次使用或文件更新后运行：
-
-```powershell
-node scripts/self-check.mjs
-```
-
-若自检失败，先修复 Skill 文件，不要继续扩写。
-
 ## Output Contract
 
 除非用户明确要求分析、参数建议、多个方案或其他语言，最终只输出一个可直接粘贴到 Krea 2 的英文自然语言提示词，放在一个 `text` 代码块中。不要添加标题、字段标签、JSON、关键词清单、解释或思考过程。
@@ -46,6 +36,14 @@ node scripts/self-check.mjs
 绝不可为了装饰性的真实感而牺牲忠实度。不要只为丰富画面就增加人物、动物、道具、珠宝、标志、纹身、天气、烟雾、霓虹灯或叙事事件。
 
 若输入存在会实质改变结果且无法同时成立的硬冲突，先提出一个简洁问题或说明最小修复方案。不要为无关紧要的选择打断扩写。若有参考图，只采用可观察事实；保留用户要求的身份或品牌连续性，但不承诺精确复刻，不编造遮挡部分。
+
+## Default Female Casting
+
+当请求只有一个女性主体，且没有指定年龄、年龄段、外貌或参考身份时，默认将她设定为 **20 岁、年轻、漂亮的成年女性**。这是本 Skill 的明确默认值，不是需要澄清的歧义。
+
+- 用户给出的年龄、外貌、身份或参考图始终覆盖此默认值。
+- 年轻漂亮不等于塑料皮肤、幼童化、网红模板脸或商业美妆修图。使用自然的年轻皮肤、个体化五官、轻微不对称和符合构图尺度的真实纹理维持可信度。
+- `时尚`、`打扮精致`、`穿着讲究` 默认控制服装搭配、剪裁、材质、发型、妆容和仪容；它们不自动把拍摄媒介改成时尚广告或棚拍人像。
 
 ## Expansion Workflow
 
@@ -70,11 +68,15 @@ node scripts/self-check.mjs
 
 不要混用互斥媒介，例如同时写 smartphone、DSLR、35mm film 和 render。经用户要求且物理上连贯的组合，例如外景编辑摄影，可以保留。
 
+“人物很时尚”不等于“这是一张时尚摄影”。只有用户明确要求 fashion editorial、lookbook、广告大片或摆拍时，才选择时尚摄影媒介；否则仍按正在发生的事件选择纪实、街头观察或手机随拍。
+
 ### 3. Lock Composition
 
 先确定景别、主体占画面比例、相机高度或角度、相机与主体的关系，以及必要的前景、中景和背景。背景应提供可定位的现实证据，不应默认变成空洞奶油散景。
 
 镜头是几何选择，不是写实咒语。通常一个焦距或一种透视类别就足够；除非结果依赖具体曝光行为，不要堆机身、镜头、光圈、快门、ISO 和胶片品牌。
+
+对于推门、行走、转身、拿取、坐下等动作，必须锁定一个尚未完成的决定性瞬间：身体朝向、承重变化、接触点、遮挡和运动方向应当互相支持。抓拍优先使用轻微偏轴、非对称构图和少量环境遮挡；不要默认把人物完整、居中、正面地展示成模特。
 
 ### 4. Build the Physical Causal Chain
 
@@ -95,11 +97,14 @@ node scripts/self-check.mjs
 
 优先用正向、可观察的摄影描述压制漂移。必要时在末尾加入一句与题材匹配的短约束，例如拒绝美容磨皮、CGI 表面、无来源轮廓光、几何扭曲或夸张 HDR。不要输出通用负面词库。
 
+不要依赖 `distorted hands`、`extra limbs` 等通用解剖负面词挽救动作。优先说明哪只手接触什么、手指如何被握持关系部分遮挡、哪只脚承重、哪个肢体被门或衣物自然遮挡。
+
 ### 7. Reality Audit
 
 回答前静默修订一次：
 
 - `Fidelity`：每项明确约束都被保留，未增加无依据实体；
+- `Casting`：未指定的单一女性主体采用 20 岁年轻漂亮的成年女性默认值，同时没有滑向塑料皮肤或标准化网红脸；
 - `Capture`：只存在一种主要拍摄逻辑；
 - `Causality`：光线、阴影、反射、景深、运动和曝光互不冲突；
 - `Composition`：主体、机位和空间关系清晰；
@@ -108,13 +113,7 @@ node scripts/self-check.mjs
 - `Restraint`：没有质量词堆、同义词轰炸或过量缺陷；
 - `Drift control`：整张图不会轻易滑向插画、CG、广告美颜或无意义浅景深。
 
-任何一项失败时，先删除矛盾，再决定是否需要增加细节。机械复核可运行：
-
-```powershell
-node scripts/self-check.mjs --file <prompt-file>
-```
-
-机械检查不能替代语义判断。
+任何一项失败时，先删除矛盾，再决定是否需要增加细节。
 
 ## Hard Rules
 
@@ -122,7 +121,9 @@ node scripts/self-check.mjs --file <prompt-file>
 
 - 摄影意图必须使用准确媒介名称，例如 `candid photograph`、`documentary photograph`、`consumer-camera snapshot` 或 `product photograph`；只写 `realistic` 含义不清。
 - 保持同一个世界、时间、机位和光照设置。
-- 人物优先描述动作、视线、重心、手与物体的接触；不默认正脸凝视镜头、美颜、年轻化、瘦身或改变身份特征。
+- 人物优先描述动作、视线、重心、手与物体的接触；除下述未指定女性的默认 casting 外，不把用户已经指定的人物进一步年轻化、美颜、瘦身或改变身份特征，也不默认让人物正脸凝视镜头。
+- 单一女性主体年龄与外貌未指定时，使用 20 岁年轻漂亮的成年女性默认值；一旦用户指定，立即服从用户而非默认值。
+- 把“时尚、精致、讲究”等修饰落实为可观察的穿搭与仪容，不自动升级为 fashion editorial、广告摆拍或美容修图。
 - 用户明确要探索时保持提示简洁；用户要忠实和可控时再提高描述密度。
 
 ### Never
@@ -130,6 +131,5 @@ node scripts/self-check.mjs --file <prompt-file>
 - 不依赖 `masterpiece`、`best quality`、`8K`、`16K`、`ultra detailed`、`award-winning`、`perfect skin`、`Unreal Engine` 或 `ray tracing` 实现真实感。
 - 不叠加 `photorealistic`、`hyperrealistic`、`ultra-realistic`、`lifelike` 和 `real photo`；准确摄影媒介已经足够。
 - 不默认采用 cinematic、戏剧性光照、青橙调色、体积光、镜头光晕、巨大散景、HDR 光泽或电影黑边。
-- 不编造人口统计身份、确切年龄、品牌设备、服装颜色、seed、sampler、CFG、steps、LoRA、weight 或 negative-prompt 语法。
+- 除上述明确的女性默认 casting 外，不编造人口统计身份、确切年龄、品牌设备、服装颜色、seed、sampler、CFG、steps、LoRA、weight 或 negative-prompt 语法。
 - 不把插画、动漫、绘画或 3D 请求强行改成照片；除非用户明确要求实拍化，否则说明本 Skill 不适用。
-
