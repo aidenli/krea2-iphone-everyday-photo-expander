@@ -1,114 +1,108 @@
 # Research Notes and Curation Decisions
 
-资料复核日期：2026-08-24。本文件只用于解释依据、审查规则或更新 Skill，不在普通扩写时加载。
+资料复核日期：2026-08-25。本文件只用于解释依据、审查规则或更新 Skill。
 
 ## Scope
 
-本 Skill 只面向开源 Krea 2 RAW/Turbo。Krea 托管产品属于另一套产品与参数体系，超出范围；其设置不得写入运行时规则或开源参数建议。
+本 Skill 只面向开源 Krea 2 RAW/Turbo，并只扩写现实中的近期 iPhone 静态生活照片。Krea 托管产品、专业相机摄影和视频超出范围。
 
 ## Evidence Hierarchy
 
-1. Krea 官方开源仓库、提示指南、expansion prompt 和技术报告：确定模型事实、提示形式、默认参数和能力边界。
-2. 有完整提示词、参数、对照图或 A/B 过程的社区实验：发现可复现倾向，不升级为普遍事实。
-3. 第三方教程、聚合站和无参数画廊：只作为线索；与官方或受控实测冲突时丢弃。
+1. Krea 官方仓库、提示指南、expansion prompt 和技术报告：确定模型与提示形式。
+2. Apple 官方 iPhone User Guide：确定现实中存在的相机、模式和条件行为。
+3. 有完整提示词、参数和对照过程的社区实验：发现可能倾向，不升级为设备或模型事实。
 
-## Accepted Official Findings
+## Krea 2 Official Findings
 
-### Krea 2 Prompting Guide
+Sources:
 
-Source: https://github.com/krea-ai/krea-2/blob/main/docs/prompting.md
+- https://github.com/krea-ai/krea-2
+- https://github.com/krea-ai/krea-2/blob/main/docs/prompting.md
+- https://github.com/krea-ai/krea-2/blob/main/docs/expansion.txt
+- https://www.krea.ai/blog/krea-2-technical-report
 
-- 使用自然语言；长而具体的提示词通常效果更好。
-- Turbo 可在约 1K 至 2K 工作。
-- 请求可见文字时用双引号包围。
-- 不把“长”机械等同于“好”；信息密度与内部一致性优先。
+- 使用自然语言；长而具体通常优于极短标签，但信息密度和内部一致性比长度重要。
+- 官方扩写器强调主体、媒介、构图、光线和 grounded details，并要求保留主体、动作、颜色和空间关系。
+- 训练中的丰富长描述与短用户请求存在分布差距，因此本地开源工作流需要独立扩写层。
+- RAW/Turbo 参数只记录在 `model-settings.md`，不得写进普通图像提示词。
 
-### Krea 2 Prompt Expander
+## Apple Official Findings
 
-Source: https://github.com/krea-ai/krea-2/blob/main/docs/expansion.txt
+### Camera Modes and Zoom
 
-- 先识别主体、情绪、媒介、构图、光线和 grounded details，再输出一个连续段落。
-- 忠实保留主体、动作、颜色和空间关系，不擅自添加物体。
-- 已详细输入只轻度整理。
-- 本 Skill 将情绪降为次要变量，把摄影因果、忠实度和反合成漂移提高到最高优先级。
+Source: https://support.apple.com/guide/iphone/camera-basics-iph263472f78/26/ios/26
 
-### Krea 2 Technical Report
+- Camera 默认可使用 Photo，并按机型提供不同相机和缩放选项。
+- 因不同机型能力不同，规则使用 `recent iPhone` 和功能名称，不默认编造具体型号。
 
-Source: https://www.krea.ai/blog/krea-2-technical-report
+### Main Camera
 
-- 模型训练主要依赖内容丰富的长描述；短用户请求与训练条件之间存在分布差距。
-- 官方 prompt expander 是独立组件，本地推理不能默认拥有同等扩写链路。
-- 模型目标包含审美多样性与探索，不是单一写实默认分布。
-- 官方 expander 对应写实请求加入轻量 photographic-medium bias，同时用约束检查抑制无依据内容。
+Source: https://support.apple.com/en-gb/guide/iphone/iph72395b28f/ios
 
-### Krea 2 Open Repository
+- 不同近期机型的 1x Main camera 默认等效视角并不完全一致。
+- 因此默认写 `rear 1x Main camera`，不统一硬编码 24mm 或 26mm。
 
-Source: https://github.com/krea-ai/krea-2
+### Portrait
 
-- RAW：52 steps、CFG 3.5、训练分辨率最高约 1K。
-- Turbo：8 steps、CFG 0.0、mu 1.15、支持约 1K 至 2K。
-- 官方建议在 RAW 上训练 LoRA，在 Turbo 上应用。
+Source: https://support.apple.com/en-mide/guide/iphone/iphd7d3a91a2/ios
 
-## Conditionally Accepted Community Findings
+- Portrait 使用深度信息产生前后景虚化，并可应用 Portrait Lighting。
+- 默认 Photo mode 不应被扩写成明显 Portrait blur；只有用户要求时使用。
 
-### Smartphone Realism A/B Tests
+### Night Mode
+
+Source: https://support.apple.com/guide/iphone/take-night-mode-photos-iph1a3c5b4c3/26/ios/26
+
+- 支持的机型会在低光中自动启用 Night mode，并自动决定曝光时间。
+- 手持移动主体不应同时具有长时间多帧合成和绝对冻结的结果。
+
+### Burst
+
+Source: https://support.apple.com/guide/iphone/take-burst-mode-shots-ipha42c55cd0/26/ios/26
+
+- Burst 用于移动主体或从连续照片中选择一帧，前后摄均可使用。
+- 它是动作选择方式，不是普遍质量增强词。
+
+### Macro
+
+Source: https://support.apple.com/en-asia/guide/iphone/iphfaacf2eb0/ios
+
+- 支持的机型在极近距离会切换到 Ultra Wide 实现 Macro。
+- Macro 只用于近摄，不能与完整环境同尺度清晰的要求混用。
+
+### Selfie
+
+Source: https://support.apple.com/en-gb/guide/iphone/iph1b88429a6/26/ios/26
+
+- 自拍使用前置相机，可在 Photo 或 Portrait 中拍摄；是否镜像受设置影响。
+- 未知镜像设置时，不应编造文字方向和严格左右身份锚点。
+
+## Conditionally Accepted Community Finding
 
 Source: https://www.reddit.com/r/StableDiffusion/comments/1v9gj77/nolora_krea_2_turbo_smartphone_realism_in_6ish/
 
-- 明确 smartphone capture、描述背景内容，有助于压制默认影棚感和空洞 bokeh。
-- 旧手机噪点、自动闪光、压缩、锐化和不完美取景可以构成设备证据，但不能成为所有手机提示词的模板。
-- 9:16 和约 2MP 属于生成参数，不应无条件写进提示词。
-- `ultrasharp`、高 HDR、高对比和高饱和经常增加 AI 味，不作为默认。
-
-### Krea 2 Realism Tests
-
-Sources:
-
-- https://www.reddit.com/r/StableDiffusion/comments/1um9ici/krea_2_realism_test/
-- https://www.reddit.com/r/StableDiffusion/comments/1ujid04/krea_2_prompt_adherence/
-
-- 真实背景对象与前中后景关系比 `detailed background` 更有解释力。
-- deep focus 必须与视角、光圈语义和环境亮度一致。
-- 旧设备的噪点、色偏和有限动态范围可以作为可见证据。
-- 不从少量 seed 推导某个 sampler 或 RAW/Turbo 必然更真实。
-
-### Realism LoRA Guidance
-
-Sources:
-
-- https://www.reddit.com/r/StableDiffusion/comments/1ulonm8/krea2realismv2_is_finally_here/
-- https://huggingface.co/RudySen/Krea2-realism-V2
-- https://huggingface.co/inlineresearch/skin-lora-krea-2-raw
-
-- 清晰自然语言段落优于 tag stacking 和神秘 trigger word。
-- subtle pores、fine vellus hair 和 natural tonal variation 可确认材质描述方向，但只适用于画面尺度允许的近景。
-- 不继承特定 LoRA 的强度、触发词、年龄偏置或人脸构图规则。
-
-## Cross-Model Inspiration
-
-Source: https://developers.openai.com/cookbook/examples/multimodal/image-gen-models-prompting-guide
-
-只迁移不依赖模型实现的通用原则：背景/场景 -> 主体 -> 关键细节 -> 约束；用可观察摄影语言描述自然写实；不要把相机参数当作精确物理模拟或质量咒语。它不是 Krea 2 模型事实的证据。
-
-## Rejected Patterns
-
-- `masterpiece, best quality, 8K, 16K, 32K`：没有建立摄影因果。
-- `smartphone + DSLR + 35mm film + 85mm f/1.2`：媒介互相冲突。
-- `perfect skin + visible pores + flawless face + gritty realism`：目标互相冲突。
-- 默认追加 cinematic、HDR、volumetric light、teal-orange、rim light 和 lens flare：容易滑向广告或概念图。
-- 每个人像都加毛孔、汗、灰尘，每张图都加 grain、motion blur 和 shallow DOF：把真实感变成固定滤镜。
-- 大段摄影品牌与 EXIF 参数：稀释主体和空间关系，也不能保证严格光学模拟。
-- 固定 negative prompt 垃圾桶：Turbo 官方 CFG 0，且官方 CLI 未提供独立字段。
-- 把社区高赞、单张好图或 LoRA 演示当成可复现证据：缺少对照和参数时只算灵感。
+- 明确 smartphone capture 和具体背景内容，有助于压制影棚感和空洞 bokeh。
+- 旧手机噪点、压缩和自动闪光只适用于相应场景，不能成为近期 iPhone 的统一模板。
+- `ultrasharp`、夸张 HDR、高对比和高饱和容易增加合成感，不作为默认。
 
 ## Observed Regression Fixture
 
-2026-08-25 的本地案例要求“时尚、打扮精致的韩国籍女白领推门走出咖啡厅”。用户明确偏好未指定女性默认采用 20 岁、年轻、漂亮的成年女性，因此年轻和美貌 casting 本身不是错误。
+2026-08-25 的案例要求“时尚、打扮精致的韩国籍女白领推门走出咖啡厅”。年轻漂亮 casting 本身不是错误；失败来自 `fashion street photograph` 将时尚人物偷换成时尚摄影、正面居中摆拍、动作过渡缺少重心和门扇几何，以及商业美妆式面部和背景虚化。
 
-实际失败来自另外三点：`fashion street photograph` 把时尚人物偷换成时尚摄影；人物正面居中且动作缺少门扇位置、躯干旋转和重心转移，结果像停下摆拍；商业美妆式光滑面部与柔化背景让漂亮滑向标准化 AI 广告脸。修正规则是保留年轻漂亮默认值，同时把媒介改回事件驱动的观察式街拍，用过渡态身体力学和偏轴遮挡破坏模特姿势，并用个体化年轻皮肤与自然面部起伏代替美容滤镜质感。
+修正后保留 20 岁年轻漂亮的成年女性默认值，用同行者的近期 iPhone 后置 1x Main camera 建立现实锚点，并通过拍摄距离、跨门槛状态、玻璃反射、普通 Photo mode 景深和现场自动曝光限制广告漂移。
 
-该单张结果不证明 Krea 2 的普遍规律，只作为扩写器的回归夹具；规则仍以提示词内部因果和后续重复测试为准。
+该结果只作为扩写规则的回归案例，不证明某个词或 seed 的普遍效果。
+
+## Rejected Patterns
+
+- `shot on iPhone` 作为孤立质量咒语；
+- iPhone 与 DSLR、胶片、光圈值、影棚灯和专业镜头混用；
+- 默认追加噪点、压缩、污镜头、严重过曝或坏构图；
+- 每张图都使用 Portrait、Night mode、0.5x、Macro、Burst 或直接闪光；
+- 把人物漂亮、服装精致和广告摄影绑定；
+- 固定 negative prompt 垃圾桶或托管 Krea 控制项；
+- 把社区单张高赞结果当成可复现模型事实。
 
 ## Update Rule
 
-新增强制规则必须满足至少一个条件：官方明确说明；公开 A/B 对照；跨多个独立实测重复出现。否则只记录为实验项。更新参数建议前必须重新核对官方仓库。
+新增 iPhone 能力必须能由 Apple 官方资料确认；新增 Krea 强制规则必须来自官方说明、公开 A/B 对照或多个独立实测。否则只记录为实验项。

@@ -1,135 +1,153 @@
 ---
-name: krea2-photoreal-prompt-expander
-description: 将简短或不均衡的想法扩写、改写、优化或诊断成面向开源 Krea 2 RAW/Turbo 的照片级真实自然语言提示词。适用于人物、手机随拍、纪实、产品、室内、建筑、美食、夜景、动作和奇幻实拍化；当用户要求 Krea 2 写实、真实照片、去 AI 感或 prompt expansion 时使用。不用于插画、动漫、3D 渲染、托管版 Krea 2 参数或直接调用模型生图。
+name: krea2-iphone-everyday-photo-expander
+description: 将简短或不均衡的想法扩写、改写、优化或诊断成面向开源 Krea 2 RAW/Turbo 的近期 iPhone 日常照片提示词。只处理静态的生活抓拍、街头观察和照片型 UGC，包括朋友随拍、同行者代拍、自拍、镜面照、穿搭、探店、聚会、旅行、食物与宠物记录；当用户要求 iPhone 拍摄感、手机生活照、自然抓拍、街头观察、UGC、去 AI 感或 prompt expansion 时使用。不用于专业相机摄影、商业广告、商品棚拍、房地产或建筑摄影、胶片、视频帧、插画、3D、托管版 Krea 2 参数或直接调用模型生图。
 ---
 
-# Krea 2 Photoreal Prompt Expander
+# Krea 2 iPhone Everyday Photo Expander
 
-把用户意图扩写成一张在物理、摄影和生活痕迹上都可信的照片。唯一优先级是：**像真的，像真的，还是像真的。** 美观、电影感和辞藻不能凌驾于真实性与忠实度。
+把用户意图扩写成一张现实中的近期 iPhone 能够拍出的静态照片。人物和事物可以年轻、漂亮、时尚、精致；拍摄仍保持日常、中性和可信。真实不等于难看，iPhone 也不等于低画质。
 
 本 Skill 只产出或诊断提示词，不声称已经生成图片。
 
+## Scope
+
+只接管以下三类照片：
+
+- `everyday candid`：生活正在发生，主体通常没有配合镜头；
+- `street observation`：拍摄者位于事件之外，环境、距离和遮挡参与叙事；
+- `static UGC`：自拍、镜面照、同行者代拍、穿搭、探店、聚会、旅行、食物或宠物分享，主体可以知道镜头存在。
+
+日常照片中可以出现商品、建筑或食物，但画面必须仍是手机生活记录。专业时尚大片、商业广告、商品 packshot、房地产或建筑摄影、新闻摄影、胶片模拟、视频截图、口播视频、插画和 3D 超出范围；不要把这些请求强行改成 iPhone 照片。
+
 ## References
 
-普通扩写直接使用本文件，不要自动加载所有参考资料。
+普通扩写直接使用本文件，不要自动加载所有资料。
 
-- 遇到多人肢体关系、复杂材质、建筑透视、极弱光、快速动作、奇幻实拍化，或用户要求诊断时，读取 [references/realism-playbook.md](references/realism-playbook.md)。
+- 遇到自拍、镜面反射、多人关系、极弱光、快速动作、Macro、Burst、直接闪光或复杂诊断时，读取 [references/iphone-photography-playbook.md](references/iphone-photography-playbook.md)。
 - 用户询问开源 RAW/Turbo 参数、分辨率、LoRA 或 negative conditioning 时，读取 [references/model-settings.md](references/model-settings.md)。
 - 只有在解释依据、审查规则或更新 Skill 时，读取 [references/research-notes.md](references/research-notes.md)。
+- 只有在更新或验收 Skill 时，读取 [references/acceptance-cases.md](references/acceptance-cases.md)。
 
 ## Output Contract
 
-除非用户明确要求分析、参数建议、多个方案或其他语言，最终只输出一个可直接粘贴到 Krea 2 的英文自然语言提示词，放在一个 `text` 代码块中。不要添加标题、字段标签、JSON、关键词清单、解释或思考过程。
+除非用户明确要求分析、参数建议、多个方案或其他语言，最终只输出一个可直接粘贴到 Krea 2 的英文自然语言提示词，放在一个 `text` 代码块中。不要输出标题、字段标签、预设名称、菜单、JSON、关键词清单、解释或思考过程。
 
-- 使用覆盖必要细节的最短连贯段落；详细输入只轻度润色，不为凑长度而扩写。
-- 保留所有明确指定的主体、数量、身份特征、动作、物体、颜色、地点、时代、时间、天气、视角、空间关系、可见文字、媒介和排除项。
-- 可见文字保留用户原文，并用英文双引号包围；引号不能保证模型拼写准确。
-- 只有用户明确说明工作流支持独立 negative prompt 字段时才额外输出该字段；否则把必要排除项压成正向提示词末尾的一句短约束。
+- 每条提示词都要显式写出 iPhone 拍摄身份。
+- 使用覆盖必要信息的最短连贯段落；详细输入只轻度整理。
+- 保留用户明确指定的主体、数量、年龄、身份、外貌、动作、物体、颜色、地点、时间、天气、视角、空间关系、可见文字、拍摄模式和排除项。
+- 可见文字保留原文并用英文双引号包围；不承诺模型能准确拼写。
+- 只有用户明确说明工作流支持独立 negative prompt 字段时才额外输出；否则仅在段末保留一句题材相关的短约束。
 
 ## Decision Priority
 
-1. 用户明确提出的要求与禁止项。
-2. 用户输入或参考资料中的可观察事实，包括身份与品牌连续性。
-3. 为使场景在物理上成立所必需的保守推断。
-4. 不改变意图、确实能提高可控性的少量细节。
+1. 用户明确要求与禁止项。
+2. 输入或参考图中的可观察事实。
+3. 使 iPhone 拍摄事件在物理上成立的保守推断。
+4. 不改变意图、确实能降低生成歧义的少量细节。
 
-绝不可为了装饰性的真实感而牺牲忠实度。不要只为丰富画面就增加人物、动物、道具、珠宝、标志、纹身、天气、烟雾、霓虹灯或叙事事件。
-
-若输入存在会实质改变结果且无法同时成立的硬冲突，先提出一个简洁问题或说明最小修复方案。不要为无关紧要的选择打断扩写。若有参考图，只采用可观察事实；保留用户要求的身份或品牌连续性，但不承诺精确复刻，不编造遮挡部分。
+不要为了“真实”增加人物、道具、污垢、坏天气、噪点或叙事事件。若参考图存在，只使用可观察事实，不编造遮挡部分。
 
 ## Default Female Casting
 
-当请求只有一个女性主体，且没有指定年龄、年龄段、外貌或参考身份时，默认将她设定为 **20 岁、年轻、漂亮的成年女性**。这是本 Skill 的明确默认值，不是需要澄清的歧义。
+请求只有一个女性主体，且没有指定年龄、年龄段、外貌或参考身份时，默认写成 **20 岁、年轻、漂亮的成年女性**。
 
-- 用户给出的年龄、外貌、身份或参考图始终覆盖此默认值。
-- 年轻漂亮不等于塑料皮肤、幼童化、网红模板脸或商业美妆修图。使用自然的年轻皮肤、个体化五官、轻微不对称和符合构图尺度的真实纹理维持可信度。
-- `时尚`、`打扮精致`、`穿着讲究` 默认控制服装搭配、剪裁、材质、发型、妆容和仪容；它们不自动把拍摄媒介改成时尚广告或棚拍人像。
+- 用户给出的年龄、外貌、身份或参考图始终覆盖默认值。
+- 年轻漂亮不等于幼童化、蜡质皮肤、网红模板脸或商业美妆修图。
+- `时尚`、`打扮精致`、`穿着讲究` 控制服装搭配、剪裁、材质、发型、妆容和仪容，不把拍摄媒介升级为 fashion editorial 或广告。
 
 ## Expansion Workflow
 
-在内部完成以下步骤，不输出规划过程。
+在内部执行，不输出步骤。
 
 ### 1. Extract Invariants
 
-确认不可改变的主体与数量、身份锚点、动作与视线、物体、颜色、地点、时代、时间、天气、构图、空间关系、文字和排除项。只修复用户没有指定的部分。
+锁定主体与数量、身份、动作、视线、物体、地点、时间、构图、文字和禁止项。只补用户没有指定的部分。
 
-### 2. Select One Capture Logic
+### 2. Route the Capture Relationship
 
-选择一个现实中成立的主要拍摄逻辑：
+- `everyday candid`：朋友或同行者在近距离随手拍，主体继续原动作；
+- `street observation`：拍摄者与事件保持现实距离，公共环境保持可读；
+- `static UGC`：主体可以主动看手机、摆姿、自拍或对镜整理。
 
-- `smartphone snapshot`：家庭、社交记录、UGC、街头偶遇；
-- `documentary digital photograph`：劳动、新闻、旅行、公共空间；
-- `analog film photograph`：用户明确要求胶片、年代感或化学成像；
-- `editorial/environmental portrait`：刻意构图，但人物与真实环境保持关系；
-- `product/still-life photograph`：商品、食物、器物、静物；
-- `interior/architecture photograph`：室内、建筑、房地产或空间记录；
-- `night/low-light photograph`：演出、酒吧、街灯、车内或极弱光；
-- `practical-effects photograph`：不现实主体以实体服装、假体、道具或现场特效被相机拍到。
+不得把 UGC 强制写成 `unposed`，也不得把生活抓拍写成正面站定的广告模特。请求未说明关系时，默认由同行者使用后置主摄记录一个生活中的自然瞬间。
 
-不要混用互斥媒介，例如同时写 smartphone、DSLR、35mm film 和 render。经用户要求且物理上连贯的组合，例如外景编辑摄影，可以保留。
+### 3. Establish the iPhone Anchor
 
-“人物很时尚”不等于“这是一张时尚摄影”。只有用户明确要求 fashion editorial、lookbook、广告大片或摆拍时，才选择时尚摄影媒介；否则仍按正在发生的事件选择纪实、街头观察或手机随拍。
+默认采用：`a handheld photo taken on a recent iPhone using the rear 1x Main camera in the default Photo mode, with no applied Portrait-mode blur`。
 
-### 3. Lock Composition
+- 自拍改用 front-facing camera；镜面自拍默认仍由后置 1x Main camera 拍向镜面。
+- 只有用户指定或场景确实需要时，才改用 0.5x Ultra Wide、兼容机型的 2x 视角、Portrait、自动 Macro、自动 Night mode、Burst、后置直接闪光或前置屏幕补光。
+- 不编造具体 iPhone 型号、固定等效焦距、分辨率、ProRAW、Photographic Style、滤镜、纵横比或后期流程。
+- Live Photo 不产生稳定可见的单帧风格，不作为默认提示词元素。
 
-先确定景别、主体占画面比例、相机高度或角度、相机与主体的关系，以及必要的前景、中景和背景。背景应提供可定位的现实证据，不应默认变成空洞奶油散景。
+### 4. Assemble from the Preset Parts
 
-镜头是几何选择，不是写实咒语。通常一个焦距或一种透视类别就足够；除非结果依赖具体曝光行为，不要堆机身、镜头、光圈、快门、ISO 和胶片品牌。
+预设是参考零件，不是枚举、模板或必选项。每部分最多选一个主预设；没有合适项时，按现实条件重新推导。
 
-对于推门、行走、转身、拿取、坐下等动作，必须锁定一个尚未完成的决定性瞬间：身体朝向、承重变化、接触点、遮挡和运动方向应当互相支持。抓拍优先使用轻微偏轴、非对称构图和少量环境遮挡；不要默认把人物完整、居中、正面地展示成模特。
+| Part | Reference presets |
+|---|---|
+| Capture relationship | friend candid, companion-shot photo, street observer, handheld selfie, mirror selfie, timer selfie, cooperative UGC |
+| iPhone camera | rear 1x Main, 0.5x Ultra Wide, front-facing camera, compatible 2x view, automatic Macro, Portrait, automatic Night mode |
+| Capture action | single shutter tap, Burst-selected action frame, handheld low light, rear direct flash, front screen illumination |
+| Distance | arm's length, close social distance, several steps away for waist-up or full-body, across-street observation |
+| Composition | off-axis candid, natural centered frame, head-and-shoulders selfie, waist-up, medium full-body, environment-heavy wide frame, mirror composition |
+| Subject state | unaware, noticed but continues, brief glance, cooperative pose, adjusting clothing, checking the mirror, interacting with companions |
+| Timing | action beginning, unfinished transition, contact instant, weight transfer, just stopped, clearest frame from a short Burst |
+| Focus and depth | ordinary phone depth, close-range natural separation, subject autofocus, slight focus compromise, explicit Portrait blur |
+| Daylight | ordinary daylight, overcast, open shade, window light, backlit entrance, street-to-interior brightness difference |
+| Interior light | warm cafe practicals, convenience-store ceiling lights, domestic mixed light, window and practical light together, residual auto-white-balance color difference |
+| Night light | streetlights, storefront signs, vehicle lights, visible practicals, automatic Night mode, direct flash, localized motion softness |
+| iPhone response | auto exposure, finite highlight and shadow recovery, restrained phone sharpening, noise reduction, highlight compression, moderate shadow lift |
+| Physical evidence | glass reflection, mirror direction, doorway occlusion, table contact, feet on ground, garment tension, foreground passerby or object occlusion |
+| UGC context | outfit share, cafe visit, gathering, travel record, food share, pet record, mirror outfit photo, ordinary selfie |
 
-### 4. Build the Physical Causal Chain
+### 5. Lock Distance, Geometry, and Timing
 
-建立：环境与时间 -> 有动机的光源 -> 方向与软硬 -> 阴影、眼神光和反射 -> 曝光、白平衡与颜色响应。
+说明手机由谁持有、位于哪里、离主体多远、主体是否知道镜头。使用现实的手机透视，不写 DSLR 镜头语言。
 
-使用一个主导光源，或一组能从地点推知的连贯光源。不要凭空添加轮廓光、补光灯或正午般硬阴影。景深、运动模糊、噪点与动态范围必须符合所选设备、光照和动作。
+对于推门、行走、转身、拿取和坐下等动作，锁定一个未完成的瞬间，并让身体朝向、承重、接触、遮挡和运动方向互相支持。Burst 只用于明示动作选帧，不用于把普通静态照片专业化。
 
-### 5. Spend a Limited Realism Budget
+### 6. Describe Available Light and iPhone Response
 
-只添加三至五项与场景相关、尺度正确、有因果依据的观察细节。已经详细的输入可以不增加细节。
+先写现场已有光源，再写 iPhone 自动曝光产生的可见结果。不要发明影棚灯、轮廓灯或电影布光。
 
-- 人物近景可使用少量肤色变化、细小汗毛、眼下纹理、散落发丝、衣物压力或轻微不对称；远景人物不要要求毛孔。
-- 面料关注关节褶皱、接缝受力和自然垂坠；硬质表面关注符合物品状态的反射、边缘和接触阴影。
-- 新品可以干净精致；不要为了“真实”自动增加灰尘、划痕、污渍或破损。
-- 颗粒、传感器噪点、压缩、运动模糊、曝光妥协只在捕获模式确实会产生时使用。
+- 默认 Photo mode 使用相对较深的手机景深；近距离可以自然分离背景，但不能出现专业大光圈奶油散景。
+- 暗场中自动 Night mode 只在现实条件允许时启用。静态环境可以更清楚；运动人物只在运动部位出现合理软化。
+- 自动曝光、亮部压缩、暗部提亮、白平衡残余色差、锐化和降噪只选场景能看见的一两项，不堆成计算摄影词表。
+- iPhone 真实感不等于主动降低画质，不自动加入噪点、压缩、脏镜头、严重过曝或拙劣构图。
 
-### 6. Control Synthetic Drift
+### 7. Add Limited Physical Evidence
 
-优先用正向、可观察的摄影描述压制漂移。必要时在末尾加入一句与题材匹配的短约束，例如拒绝美容磨皮、CGI 表面、无来源轮廓光、几何扭曲或夸张 HDR。不要输出通用负面词库。
+只增加三至五项符合距离和动作的证据，例如门把接触、脚与地面、衣物受力、玻璃反射或前景遮挡。远景不写毛孔，新衣不自动加污渍。
 
-不要依赖 `distorted hands`、`extra limbs` 等通用解剖负面词挽救动作。优先说明哪只手接触什么、手指如何被握持关系部分遮挡、哪只脚承重、哪个肢体被门或衣物自然遮挡。
+优先写正向接触关系，不依赖 `distorted hands`、`extra limbs` 等通用负面词。
 
-### 7. Reality Audit
+### 8. Reality Audit
 
-回答前静默修订一次：
+回答前静默修订：
 
-- `Fidelity`：每项明确约束都被保留，未增加无依据实体；
-- `Casting`：未指定的单一女性主体采用 20 岁年轻漂亮的成年女性默认值，同时没有滑向塑料皮肤或标准化网红脸；
-- `Capture`：只存在一种主要拍摄逻辑；
-- `Causality`：光线、阴影、反射、景深、运动和曝光互不冲突；
-- `Composition`：主体、机位和空间关系清晰；
-- `Matter`：材质响应与距离、物品状态和接触关系匹配；
-- `Behavior`：姿势、视线、手部接触、承重和遮挡可信；
-- `Restraint`：没有质量词堆、同义词轰炸或过量缺陷；
-- `Drift control`：整张图不会轻易滑向插画、CG、广告美颜或无意义浅景深。
+- `Scope`：确实是生活抓拍、街头观察或静态 UGC；
+- `Anchor`：明确写出一套现实可用的 iPhone 相机与模式；
+- `Compatibility`：没有同时混用前后摄、冲突镜头或不兼容拍摄状态；
+- `Relationship`：拍摄者、手机、主体、距离和主体知情状态一致；
+- `Geometry`：动作、重心、接触、遮挡和镜面反射可信；
+- `Exposure`：现场光、自动曝光、Night mode、闪光和运动结果不冲突；
+- `Casting`：默认女性仍是 20 岁年轻漂亮的成年女性，没有滑向广告修图；
+- `Restraint`：没有专业相机术语、质量词堆砌、虚构缺陷或平台参数；
+- `Output`：只有一个英文 `text` 代码块，没有预设名称和解释。
 
-任何一项失败时，先删除矛盾，再决定是否需要增加细节。
-
-## Hard Rules
+## Hard Boundary
 
 ### Always
 
-- 摄影意图必须使用准确媒介名称，例如 `candid photograph`、`documentary photograph`、`consumer-camera snapshot` 或 `product photograph`；只写 `realistic` 含义不清。
-- 保持同一个世界、时间、机位和光照设置。
-- 人物优先描述动作、视线、重心、手与物体的接触；除下述未指定女性的默认 casting 外，不把用户已经指定的人物进一步年轻化、美颜、瘦身或改变身份特征，也不默认让人物正脸凝视镜头。
-- 单一女性主体年龄与外貌未指定时，使用 20 岁年轻漂亮的成年女性默认值；一旦用户指定，立即服从用户而非默认值。
-- 把“时尚、精致、讲究”等修饰落实为可观察的穿搭与仪容，不自动升级为 fashion editorial、广告摆拍或美容修图。
-- 用户明确要探索时保持提示简洁；用户要忠实和可控时再提高描述密度。
+- 明确写 `recent iPhone` 和实际使用的相机、视角或模式。
+- 让拍摄关系决定构图，让现场条件决定曝光和设备响应。
+- 保留漂亮人物、精致穿搭和美好事物，不通过丑化换取真实感。
+- 用户明确要求优先于所有默认值和预设。
 
 ### Never
 
-- 不依赖 `masterpiece`、`best quality`、`8K`、`16K`、`ultra detailed`、`award-winning`、`perfect skin`、`Unreal Engine` 或 `ray tracing` 实现真实感。
-- 不叠加 `photorealistic`、`hyperrealistic`、`ultra-realistic`、`lifelike` 和 `real photo`；准确摄影媒介已经足够。
-- 不默认采用 cinematic、戏剧性光照、青橙调色、体积光、镜头光晕、巨大散景、HDR 光泽或电影黑边。
-- 除上述明确的女性默认 casting 外，不编造人口统计身份、确切年龄、品牌设备、服装颜色、seed、sampler、CFG、steps、LoRA、weight 或 negative-prompt 语法。
-- 不把插画、动漫、绘画或 3D 请求强行改成照片；除非用户明确要求实拍化，否则说明本 Skill 不适用。
+- 不写 DSLR、mirrorless、35mm film、专业镜头、光圈值、影棚布光、电影摄影或胶片颗粒。
+- 不用 `masterpiece`、`best quality`、`8K`、`perfect skin`、`Unreal Engine`、`ray tracing` 或同义写实词堆叠。
+- 不在缺少场景依据时采用 Portrait、0.5x、Macro、Night mode、Burst、直接闪光或具体机型；极近距与低光条件仍按现实触发 Macro 或 Night mode。
+- 不把插画、视频、广告、商品棚拍、建筑摄影或专业时尚摄影强行改成 iPhone 日常照片。
