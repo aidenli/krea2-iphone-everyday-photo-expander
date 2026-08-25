@@ -27,6 +27,7 @@ description: 为开源 Krea 2 RAW/Turbo 扩写、优化或诊断现实中的近�
 - 默认不写 `iPhone`、`rear 1x Main camera`、`Photo mode`、`phone-sized sensor` 或同类设备术语；用户明确要求这些文字时才保留。
 - 使用覆盖必要信息的最短连贯段落；详细输入只轻度整理。
 - 保留用户明确指定的主体、数量、年龄、身份、外貌、动作、物体、颜色、地点、时间、天气、视角、空间关系、可见文字、拍摄模式和排除项。
+- 人物年龄已知或由默认值补齐时，优先使用 `20-year-old woman`、`35-year-old man` 这类具体年龄表达，不在数字年龄后重复添加 `adult`；用户明确要求其他年龄措辞时除外。
 - 可见文字保留原文并用英文双引号包围；不承诺模型能准确拼写。
 - 不用 `feels authentic`、`genuinely everyday`、`natural phone perspective`、`polished personal record` 等评价句替代可见条件。
 - 默认不追加反广告、反 CGI 或通用畸形负面词清单。确有必要的限制优先改写成可见的正向状态。
@@ -43,7 +44,7 @@ description: 为开源 Krea 2 RAW/Turbo 扩写、优化或诊断现实中的近�
 
 ## Default Female Casting
 
-请求只有一个女性主体，且没有指定年龄、年龄段、外貌或参考身份时，默认写成 **20 岁、年轻、漂亮的成年女性**。
+请求只有一个女性主体，且没有指定年龄、年龄段、外貌或参考身份时，默认写成 **20 岁、年轻、漂亮的女性**。
 
 - 用户给出的年龄、外貌、身份或参考图始终覆盖默认值。
 - 年轻漂亮不等于幼童化、蜡质皮肤、网红模板脸或商业美妆修图。
@@ -232,7 +233,7 @@ description: 为开源 Krea 2 RAW/Turbo 扩写、优化或诊断现实中的近�
 输入：日常抓拍，中国女人，拿着咖啡，上班族，快步走，上班。
 
 ```text
-A beautiful 20-year-old adult Chinese office worker walks briskly toward work along a city sidewalk, holding a takeaway coffee firmly in one hand while her free arm swings with her stride. The medium full-body frame is made from several steps away at ordinary chest height, slightly off-center, with an office entrance, pavement joints and glass reflections remaining readable around her. Morning daylight keeps her face, clothing and the recessed entrance legible in the same exposure. Her forward gaze, landing foot, lifted heel, coffee grip and the pull of her coat follow the same direction of movement; slight motion softness is limited to her swinging hand, coat hem and a few loose strands of hair.
+A beautiful 20-year-old Chinese woman walks briskly toward her office along a city sidewalk, holding a takeaway coffee firmly in one hand while her free arm swings with her stride. The medium full-body frame is made from several steps away at ordinary chest height, slightly off-center, with an office entrance, pavement joints and glass reflections remaining readable around her. Morning daylight keeps her face, clothing and the recessed entrance legible in the same exposure. Her forward gaze, landing foot, lifted heel, coffee grip and the pull of her coat follow the same direction of movement; slight motion softness is limited to her swinging hand, coat hem and a few loose strands of hair.
 ```
 
 ### Cafe Doorway Candid
@@ -240,31 +241,31 @@ A beautiful 20-year-old adult Chinese office worker walks briskly toward work al
 输入：时尚、打扮精致的韩国籍女白领，推门走出咖啡厅。
 
 ```text
-One beautiful 20-year-old adult Korean office worker pushes open a glass cafe door and crosses the threshold toward the sidewalk, wearing carefully coordinated contemporary officewear with precise tailoring, neat hair and refined everyday makeup. The medium full-body view comes from several steps outside the entrance at chest height and sits slightly off-axis, with the moving door cutting across part of the doorway. Her hand closes around the vertical handle, her torso turns into the push, and her weight transfers from the foot still inside to the foot landing outside while she looks toward her path. Street daylight keeps her face readable, but reflections on the glass approach clipped white and the warmer cafe interior remains comparatively dense.
+One beautiful 20-year-old Korean woman pushes open a glass cafe door and crosses the threshold toward the sidewalk, wearing carefully coordinated contemporary officewear with precise tailoring, neat hair and refined everyday makeup. The medium full-body view comes from several steps outside the entrance at chest height and sits slightly off-axis, with the moving door cutting across part of the doorway. Her hand closes around the vertical handle, her torso turns into the push, and her weight transfers from the foot still inside to the foot landing outside while she looks toward her path. Street daylight keeps her face readable, but reflections on the glass approach clipped white and the warmer cafe interior remains comparatively dense.
 ```
 
 ### Polished Outfit UGC
 
 ```text
-One beautiful 20-year-old adult woman pauses near a neighborhood bookstore entrance to show a carefully coordinated everyday outfit, looking briefly toward the camera with a relaxed, deliberate stance. The medium full-body frame is made from several steps away at chest height, nearly centered but with slightly more pavement on one side; the storefront frame, paving seams and window display remain legible behind her. Overcast daylight produces even facial exposure and restrained color, while garment folds at the elbows, waist and knees follow her stance. Fine high-contrast edges along the blazer and window frame show slight over-sharpening.
+One beautiful 20-year-old woman pauses near a neighborhood bookstore entrance to show a carefully coordinated everyday outfit, looking briefly toward the camera with a relaxed, deliberate stance. The medium full-body frame is made from several steps away at chest height, nearly centered but with slightly more pavement on one side; the storefront frame, paving seams and window display remain legible behind her. Overcast daylight produces even facial exposure and restrained color, while garment folds at the elbows, waist and knees follow her stance. Fine high-contrast edges along the blazer and window frame show slight over-sharpening.
 ```
 
 ### Mirror Outfit Photo
 
 ```text
-One beautiful 20-year-old adult woman stands before a full-length bedroom mirror, holding her phone at chest height in one hand while the other hand adjusts the hem of her jacket. The phone, holding hand, reflected body, mirror frame and visible room share one coherent reflection geometry, and the phone covers only a small part of her upper torso without hiding her face. Soft window light and one ordinary room lamp remain distinguishable, with the floor contact and bedroom background readable. Automatic white balance leaves a faint cool cast near the window and a warmer cast around the lamp.
+One beautiful 20-year-old woman stands before a full-length bedroom mirror, holding her phone at chest height in one hand while the other hand adjusts the hem of her jacket. The phone, holding hand, reflected body, mirror frame and visible room share one coherent reflection geometry, and the phone covers only a small part of her upper torso without hiding her face. Soft window light and one ordinary room lamp remain distinguishable, with the floor contact and bedroom background readable. Automatic white balance leaves a faint cool cast near the window and a warmer cast around the lamp.
 ```
 
 ### Indoor Mixed-Light Cafe UGC
 
 ```text
-One beautiful 20-year-old adult woman sits at a small cafe table with a cup of coffee and glances up briefly from an open notebook. The waist-up frame is made from close social distance at seated eye level, with the cup resting flat on the table, her fingers touching the notebook edge and the window frame visible behind one shoulder. Cool window light reaches one side of her face while warm ceiling fixtures remain visible deeper in the room; her skin stays readable but the shaded wall retains fine luminance noise and mild noise-reduction smoothing.
+One beautiful 20-year-old woman sits at a small cafe table with a cup of coffee and glances up briefly from an open notebook. The waist-up frame is made from close social distance at seated eye level, with the cup resting flat on the table, her fingers touching the notebook edge and the window frame visible behind one shoulder. Cool window light reaches one side of her face while warm ceiling fixtures remain visible deeper in the room; her skin stays readable but the shaded wall retains fine luminance noise and mild noise-reduction smoothing.
 ```
 
 ### Night Action
 
 ```text
-A young adult man steps quickly down from a city bus while looking toward the curb, framed from several steps away with the bus doorway, pavement edge and nearby stop sign still readable. Bus interior lights and one streetlamp create the available illumination, with the curb darker than the doorway and the fixed surroundings still legible. His planted foot, hand on the rail and forward weight transfer remain clear, while the moving foot and coat edge show localized softness and the stationary doorway stays comparatively sharp.
+A 24-year-old man steps quickly down from a city bus while looking toward the curb, framed from several steps away with the bus doorway, pavement edge and nearby stop sign still readable. Bus interior lights and one streetlamp create the available illumination, with the curb darker than the doorway and the fixed surroundings still legible. His planted foot, hand on the rail and forward weight transfer remain clear, while the moving foot and coat edge show localized softness and the stationary doorway stays comparatively sharp.
 ```
 
 ## Reality Audit
@@ -278,7 +279,7 @@ A young adult man steps quickly down from a city bus while looking toward the cu
 - `Geometry`：动作、重心、接触、遮挡和镜面反射可信；
 - `Exposure`：现场光、自动曝光、Night mode、闪光和运动结果不冲突；
 - `Imperfection`：至少一项主要瑕疵有明确原因、范围局部，面部和核心动作可辨；
-- `Casting`：默认女性仍是 20 岁年轻漂亮的成年女性，没有滑向广告修图；
+- `Casting`：默认女性仍是 20 岁年轻漂亮的女性，通过具体年龄而非重复的 `adult` 标记年龄；
 - `Language`：没有真实性评价句、专业相机术语、质量词堆砌或默认负面清单；
 - `Output`：只有一个英文 `text` 代码块，没有预设名称和解释。
 
